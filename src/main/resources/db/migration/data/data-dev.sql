@@ -17,11 +17,11 @@ INSERT INTO `user_role` (user_id, role_id) VALUES
 INSERT INTO `country` (name) VALUES
 ('USA'), ('France'), ('Serbia');
 
-INSERT INTO `movie` (title, original_title, description, cover_image_reference, release_date, origin_country_id, imdb_link, imdb_rating, rotten_tomatoes_link, rotten_tomatoes_rating) VALUES
-('Oppenheimer', null, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', null, '2023-07-21', 1, 'tt15398776', 85, 'oppenheimer_2023', 93),
-('Barbie', null, 'Barbie suffers a crisis that leads her to question her world and her existence.', null, '2023-07-21', 1, 'tt1517268/', 71, 'barbie', 88),
-('Sugar and stars', 'À la belle étoile', 'Since he was a kid, Yazid has one big passion, pastry making. Raised between foster homes and group homes, the young man will try to make his dream come true: to work with the greatest pastry chefs and become the best.', null, '2023-02-22', 2, 'tt19815386', 66, 'sugar_and_stars', 90),
-('Guardians of the Formula', 'Čuvari formule', 'In 1958, during the Cold War - two scientists, two worlds, and two ideologies faced in a race for survival at the Vinca Scientific Institute near Belgrade.', null, '2023-10-26', 1, 'tt20365920', 84, null, null);
+INSERT INTO `movie` (title, original_title, description, cover_image_reference, release_date, origin_country_id, imdb_link, imdb_rating, rotten_tomatoes_link, rotten_tomatoes_rating, status) VALUES
+('Oppenheimer', null, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', null, '2023-07-21', 1, 'tt15398776', 85, 'oppenheimer_2023', 93, 'RELEASED'),
+('Barbie', null, 'Barbie suffers a crisis that leads her to question her world and her existence.', null, '2023-07-21', 1, 'tt1517268/', 71, 'barbie', 88, 'RELEASED'),
+('Sugar and stars', 'À la belle étoile', 'Since he was a kid, Yazid has one big passion, pastry making. Raised between foster homes and group homes, the young man will try to make his dream come true: to work with the greatest pastry chefs and become the best.', null, '2023-02-22', 2, 'tt19815386', 66, 'sugar_and_stars', 90, 'RELEASED'),
+('Guardians of the Formula', 'Čuvari formule', 'In 1958, during the Cold War - two scientists, two worlds, and two ideologies faced in a race for survival at the Vinca Scientific Institute near Belgrade.', null, '2023-10-26', 3, 'tt20365920', 84, null, null, 'ANNOUNCED');
 
 INSERT INTO `genre` (name) VALUES
 ('Action'), -- 1

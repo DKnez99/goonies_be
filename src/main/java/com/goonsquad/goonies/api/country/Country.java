@@ -1,5 +1,6 @@
 package com.goonsquad.goonies.api.country;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.goonsquad.goonies.api.movie.Movie;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

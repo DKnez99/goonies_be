@@ -5,6 +5,8 @@ import com.goonsquad.goonies.api.movie.genre.Genre;
 import com.goonsquad.goonies.api.review.Review;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -55,8 +57,8 @@ public class Movie {
 
     private Date releaseDate;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "country_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "origin_country_id")
     private Country originCountry;
 
     private String imdbLink;
@@ -67,7 +69,10 @@ public class Movie {
 
     private Short rottenTomatoesRating;
 
-    @Formula("SELECT AVG(r.rating) FROM Review r WHERE r.movie_id = id")
+    @Formula("(SELECT AVG(r.rating) FROM Review r WHERE r.movie_id = id)")
     private Short gooniesRating;
+
+    @Enumerated(EnumType.STRING)
+    private MovieStatus status;
 
 }

@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `movie` (
     imdb_link                           VARCHAR(128),
     imdb_rating                         TINYINT UNSIGNED,
     rotten_tomatoes_link                VARCHAR(128),
-    rotten_tomatoes_rating              TINYINT UNSIGNED
+    rotten_tomatoes_rating              TINYINT UNSIGNED,
+    status                              ENUM('RELEASED', 'ANNOUNCED', 'CANCELED','DEACTIVATED') NOT NULL DEFAULT 'RELEASED'
 );
 
 CREATE INDEX movie_origin_country_id_idx ON `movie`(origin_country_id);
