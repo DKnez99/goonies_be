@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Goonies API")
+@Tag(name = "Movies API")
 public class MovieController {
 
     private final MovieService movieService;

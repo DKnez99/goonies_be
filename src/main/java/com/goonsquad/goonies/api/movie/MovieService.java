@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import static com.goonsquad.goonies.api.common.validation.ValidationConstants.MOVIE_ALREADY_EXISTS;
 import static com.goonsquad.goonies.api.common.validation.ValidationConstants.MOVIE_RATING_WITHOUT_LINK;
+import static java.util.Objects.isNull;
 
 @Service
 @Transactional
@@ -53,9 +54,9 @@ public class MovieService {
             throw new BadRequestException(MessageFormat.format(MOVIE_ALREADY_EXISTS, createMovieDto.getTitle(), createMovieDto.getReleaseDate()));
         }
 
-        if ((createMovieDto.getImdbLink().isBlank() && createMovieDto.getImdbRating() != null) || ((createMovieDto.getRottenTomatoesLink().isBlank() && createMovieDto.getRottenTomatoesRating() != null))) {
-            throw new BadRequestException(MOVIE_RATING_WITHOUT_LINK);
-        }
+//        if ((createMovieDto.getImdbLink().isBlank() && !isNull(createMovieDto.getImdbRating())) || (createMovieDto.getRottenTomatoesLink().isBlank() && !isNull(createMovieDto.getRottenTomatoesRating()))) {
+//            throw new BadRequestException(MOVIE_RATING_WITHOUT_LINK);
+//        }
 
         Country country = countryService.findByName(createMovieDto.getOriginCountry());
         Set<Genre> genres = createMovieDto.getGenres().stream()

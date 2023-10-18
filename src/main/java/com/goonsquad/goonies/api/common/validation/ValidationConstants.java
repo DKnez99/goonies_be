@@ -18,4 +18,9 @@ public final class ValidationConstants {
 
     // Review
     public static final String REQUIRED_REVIEW_MOVIE_RATING = "Movie rating is required";
+
+    // Jwt
+    public static final String JWT_SIGNATURE_EXCEPTION = "Unable to sign token";
+    public static final String JWT_PARSING_EXCEPTION = "Unable to parse token";
+    public static final String JWT_VERIFICATION_EXCEPTION = "Unable to verify token";
 }
