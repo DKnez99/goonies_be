@@ -1,7 +1,8 @@
 package com.goonsquad.goonies.api.movie;
 
-import org.springframework.hateoas.CollectionModel;
+import com.goonsquad.goonies.api.movie.dto.MovieDto;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -15,16 +16,10 @@ public class MovieModelAssembler extends RepresentationModelAssemblerSupport<Mov
     }
 
     @Override
-    public MovieDto toModel(Movie entity) {
-        MovieDto model = new MovieDto(entity);
-        model.add(linkTo(methodOn(MovieController.class).getMovieById(entity.getId())).withSelfRel());
-        return model;
+    public @NonNull MovieDto toModel(@NonNull Movie movieEntity) {
+        MovieDto movieModel = new MovieDto(movieEntity);
+        movieModel.add(linkTo(methodOn(MovieController.class).getMovieById(movieEntity.getId())).withSelfRel());
+        return movieModel;
     }
 
-    @Override
-    public CollectionModel<MovieDto> toCollectionModel(Iterable<? extends Movie> entities) {
-        CollectionModel<MovieDto> models = super.toCollectionModel(entities);
-        models.add(linkTo(methodOn(MovieController.class).getAllMovies(null, null)).withSelfRel());
-        return models;
-    }
 }

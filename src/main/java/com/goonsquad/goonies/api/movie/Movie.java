@@ -51,13 +51,12 @@ public class Movie {
     private Set<Genre> genres = new HashSet<>();
 
     @Builder.Default
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "movie_id")
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
     private Date releaseDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "origin_country_id")
     private Country originCountry;
 
@@ -74,5 +73,10 @@ public class Movie {
 
     @Enumerated(EnumType.STRING)
     private MovieStatus status;
+
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setMovie(this);
+    }
 
 }
