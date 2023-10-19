@@ -20,7 +20,17 @@ public final class ValidationConstants {
     public static final String REQUIRED_REVIEW_MOVIE_RATING = "Movie rating is required";
 
     // Jwt
-    public static final String JWT_SIGNATURE_EXCEPTION = "Unable to sign token";
-    public static final String JWT_PARSING_EXCEPTION = "Unable to parse token";
-    public static final String JWT_VERIFICATION_EXCEPTION = "Unable to verify token";
+    public static final String TOKEN_SIGNATURE_EXCEPTION = "Unable to sign token";
+    public static final String TOKEN_PARSING_EXCEPTION = "Unable to parse token";
+    public static final String TOKEN_VERIFICATION_EXCEPTION = "Unable to verify token";
+    public static final String TOKEN_NOT_VALID = "Token is invalid";
+
+    // User
+    public static final String USER_NOT_ACTIVE_OR_NONEXISTENT = "User is not active or doesn't exist";
+
+    // Auth
+    public static final String REQUIRED_USERNAME_OR_EMAIL = "Username or email is required";
+    public static final String REQUIRED_PASSWORD = "Password is required";
+    public static final String REQUIRED_REFRESH_TOKEN = "Refresh token is required";
+    public static final String AUTHENTICATION_FAILED = "User authentication failed";
 }

@@ -1,4 +1,4 @@
-package com.goonsquad.goonies.security.jwt;
+package com.goonsquad.goonies.security.auth.jwt;
 
 import com.goonsquad.goonies.api.user.User;
 import com.goonsquad.goonies.exception.JwtException;
@@ -21,9 +21,9 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-import static com.goonsquad.goonies.api.common.validation.ValidationConstants.JWT_PARSING_EXCEPTION;
-import static com.goonsquad.goonies.api.common.validation.ValidationConstants.JWT_SIGNATURE_EXCEPTION;
-import static com.goonsquad.goonies.api.common.validation.ValidationConstants.JWT_VERIFICATION_EXCEPTION;
+import static com.goonsquad.goonies.api.common.validation.ValidationConstants.TOKEN_PARSING_EXCEPTION;
+import static com.goonsquad.goonies.api.common.validation.ValidationConstants.TOKEN_SIGNATURE_EXCEPTION;
+import static com.goonsquad.goonies.api.common.validation.ValidationConstants.TOKEN_VERIFICATION_EXCEPTION;
 
 @Slf4j
 @Component
@@ -37,6 +37,7 @@ public class JwtUtil {
     private int refreshTokenExpirationTimeInMinutes;
     @Value("${jwt.lasting-refresh-token.expiration-time-in-days}")
     private int lastingRefreshTokenExpirationTimeInDays;
+
 
     private String secret;
     private JWSSigner signer;
@@ -65,7 +66,7 @@ public class JwtUtil {
         return signJWT(jwtClaimsSetBuilder.build());
     }
 
-    public boolean isValid(String token) {
+    public boolean isInvalid(String token) {
         try{
             SignedJWT signedJWT = SignedJWT.parse(token);
             JWSVerifier verifier = new MACVerifier(secret);
@@ -73,10 +74,10 @@ public class JwtUtil {
             return !signedJWT.verify(verifier) || expirationTime.before(new Date());
         } catch (ParseException e) {
             log.error("Exception occurred while parsing JWT token: {}", e.getMessage(), e);
-            throw new JwtException(JWT_PARSING_EXCEPTION);
+            throw new JwtException(TOKEN_PARSING_EXCEPTION);
         } catch (JOSEException e) {
             log.error("Exception occurred while verifying JWT token: {}", e.getMessage(), e);
-            throw new JwtException(JWT_VERIFICATION_EXCEPTION);
+            throw new JwtException(TOKEN_VERIFICATION_EXCEPTION);
         }
     }
 
@@ -89,7 +90,7 @@ public class JwtUtil {
             return signedJWT.getJWTClaimsSet().getSubject();
         } catch (ParseException e) {
             log.error("Exception occurred while parsing JWT token: {}", e.getMessage(), e);
-            throw new JwtException(JWT_PARSING_EXCEPTION);
+            throw new JwtException(TOKEN_PARSING_EXCEPTION);
         }
     }
 
@@ -99,7 +100,7 @@ public class JwtUtil {
             return signedJWT.getJWTClaimsSet().getClaim(REMEMBER_ME_CLAIM_NAME) == Boolean.TRUE;
         } catch (ParseException e) {
             log.error("Exception occurred while parsing JWT token: {}", e.getMessage(), e);
-            throw new JwtException(JWT_PARSING_EXCEPTION);
+            throw new JwtException(TOKEN_PARSING_EXCEPTION);
         }
     }
 
@@ -110,7 +111,7 @@ public class JwtUtil {
             return signedJWT.serialize();
         } catch (JOSEException e) {
             log.error("Exception occurred while signing JWT token: {}", e.getMessage(), e);
-            throw new JwtException(JWT_SIGNATURE_EXCEPTION);
+            throw new JwtException(TOKEN_SIGNATURE_EXCEPTION);
         }
     }
 

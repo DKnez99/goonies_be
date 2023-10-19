@@ -4,6 +4,7 @@ import com.goonsquad.goonies.api.movie.MovieStatus;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +40,7 @@ public class CreateMovieDto {
     @Size(min = 1, message = REQUIRED_MOVIE_GENRE)
     private List<String> genres = new ArrayList<>();
 
-    @NotBlank(message = REQUIRED_MOVIE_RELEASE_DATE)
+    @NotNull(message = REQUIRED_MOVIE_RELEASE_DATE)
     private Date releaseDate;
 
     @NotBlank(message = REQUIRED_MOVIE_ORIGIN_COUNTRY)
@@ -57,7 +58,7 @@ public class CreateMovieDto {
     @Max(value = 100, message = REQUIRED_MOVIE_RATING_MAX)
     private Short rottenTomatoesRating;
 
-    @NotBlank(message = REQUIRED_MOVIE_STATUS)
+    @NotNull(message = REQUIRED_MOVIE_STATUS)
     private MovieStatus status;
 
 }
