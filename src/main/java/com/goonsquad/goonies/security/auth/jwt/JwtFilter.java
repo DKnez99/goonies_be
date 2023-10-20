@@ -47,14 +47,14 @@ public class JwtFilter extends OncePerRequestFilter {
         final String token = header.split(" ")[1].trim();
 
         if (jwtUtil.isInvalid(token)) {
-            setResponse(TOKEN_NOT_VALID, request, response);
+            setExceptionResponse(TOKEN_NOT_VALID, request, response);
             return;
         }
 
         UserPrincipal userPrincipal = userDetailsService.loadUserByUsername(jwtUtil.getSubject(token));
 
         if(isNull(userPrincipal) || !userPrincipal.isEnabled()) {
-            setResponse(USER_NOT_ACTIVE_OR_NONEXISTENT, request, response);
+            setExceptionResponse(USER_NOT_ACTIVE_OR_NONEXISTENT, request, response);
             return;
         }
 
@@ -67,10 +67,11 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private void setResponse(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void setExceptionResponse(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
         ExceptionDto exception = new ExceptionDto(new ForbiddenException(message), new ServletWebRequest(request), HttpStatus.FORBIDDEN.value());
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.getWriter().println(objectMapper.writeValueAsString(exception));
     }
+
 }

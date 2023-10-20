@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
         return new ExceptionDto(ex, request, HttpStatus.BAD_REQUEST.value());
     }
 
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(value = ForbiddenException.class)
+    public ExceptionDto handleForbiddenException(RuntimeException ex, WebRequest request) {
+        return new ExceptionDto(ex, request, HttpStatus.FORBIDDEN.value());
+    }
+
 }
