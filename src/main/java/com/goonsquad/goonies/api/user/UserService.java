@@ -17,9 +17,4 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException(User.class, usernameOrEmail));
     }
 
-    public User findActiveByUsernameOrEmail(final String usernameOrEmail) {
-        return userRepository.findActiveByUsernameOrEmailIgnoreCase(usernameOrEmail)
-                .orElseThrow(() -> new EntityNotFoundException(User.class, usernameOrEmail));
-    }
-
 }

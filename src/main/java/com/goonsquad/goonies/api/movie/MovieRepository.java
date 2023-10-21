@@ -16,4 +16,5 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     Page<Movie> findAllByOriginCountry(Country country, Pageable pageable);
 
     boolean existsByTitleAndReleaseDate(String title, Date releaseDate);
+
 }

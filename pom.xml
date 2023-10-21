@@ -12,7 +12,7 @@
 	<artifactId>goonies</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>goonies</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Social movie ratings site</description>
 	<properties>
 		<java.version>17</java.version>
 		<nimbus-jose-jwt.version>9.25</nimbus-jose-jwt.version>
@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -87,8 +87,10 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${open-api.version}</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

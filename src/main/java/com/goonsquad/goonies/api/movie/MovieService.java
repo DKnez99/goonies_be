@@ -49,7 +49,7 @@ public class MovieService {
         return movieRepository.findAllByOriginCountry(country, pageable);
     }
 
-    public Movie createMovie(CreateMovieDto createMovieDto) {
+    public Movie create(CreateMovieDto createMovieDto) {
         if (movieRepository.existsByTitleAndReleaseDate(createMovieDto.getTitle(), createMovieDto.getReleaseDate())){
             throw new BadRequestException(MessageFormat.format(MOVIE_ALREADY_EXISTS, createMovieDto.getTitle(), createMovieDto.getReleaseDate()));
         }
@@ -77,4 +77,12 @@ public class MovieService {
 
         return movieRepository.save(movie);
     }
+
+    public Movie delete(final Long id) {
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Movie.class, id));
+        movie.setStatus(MovieStatus.DEACTIVATED);
+        return movieRepository.save(movie);
+    }
+
 }

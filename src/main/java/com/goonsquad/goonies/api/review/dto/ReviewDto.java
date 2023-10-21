@@ -1,7 +1,9 @@
-package com.goonsquad.goonies.api.review;
+package com.goonsquad.goonies.api.review.dto;
 
 import com.goonsquad.goonies.api.common.persistence.EntityStatus;
 import com.goonsquad.goonies.api.movie.dto.MovieDto;
+import com.goonsquad.goonies.api.review.Review;
+import com.goonsquad.goonies.api.review.WatchPlatform;
 import com.goonsquad.goonies.api.user.BaseUserDto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

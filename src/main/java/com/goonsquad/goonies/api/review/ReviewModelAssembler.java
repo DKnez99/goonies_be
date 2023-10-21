@@ -1,5 +1,6 @@
 package com.goonsquad.goonies.api.review;
 
+import com.goonsquad.goonies.api.review.dto.ReviewDto;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

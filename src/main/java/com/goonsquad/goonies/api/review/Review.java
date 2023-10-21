@@ -22,7 +22,11 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Review extends AuditableEntity {
 
     @Id
